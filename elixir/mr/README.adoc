@@ -1,0 +1,30 @@
+= m-r
+
+
+== Aggregate
+
+InventoryItem::
+  * CreateInventoryItem -> InventoryItemCreated
+  * DeactivateInventoryItem -> InventoryItemDeactivated
+  * RemoveItemsFromInventory(count) -> ItemRemovedFromInventory
+  * CheckInItemsToInventory(count) -> ItemsCheckedInToInventory
+  * RenameInventoryItem -> InventoryItemRenamed
+
+== Read models
+
+InventoryItemListView::
+  * InventoryItemListDto
+  * handles: created, renamed, InventoryItemDeactivated
+
+InventoryItemDetailView::
+  * InventoryItemDetailDto
+  * handles: created, renamed, removed, checkedin, removed
+
+== Sequence
+
+* Command sent to Bus
+* Bus dispatch command to CommandHandler
+* CommandHandler load from Repository and call InventoryItem methods
+* InventoryItem methods generates events, applied to self
+* CommandHandler save to repository which store in EventStore
+* EventStore save for aggregate, then dispatch events to Bus
