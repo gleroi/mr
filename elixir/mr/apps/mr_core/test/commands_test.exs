@@ -10,13 +10,13 @@ defmodule CommandsTest do
     assert Repository.get_by_id(state.repo, 1) != nil
     assert Repository.get_by_id(state.repo, 1).id == 1
     assert Repository.get_by_id(state.repo, 1).name == "item name"
+    assert Repository.get_by_id(state.repo, 1).activated == true
+    assert Repository.get_by_id(state.repo, 1).count == 0
   end
 
   test "checkin shoud increment count" do
     state = Commands.new()
     state = Commands.create_inventory_item(state, 1, "item name")
-
-    assert Repository.get_by_id(state.repo, 1).count == 0
 
     state = Commands.checkin_items_into_inventory(state, 1, 5)
 
@@ -45,8 +45,6 @@ defmodule CommandsTest do
   test "deactivate should mark item as inactive" do
     state = Commands.new()
     state = Commands.create_inventory_item(state, 1, "item name")
-
-    assert Repository.get_by_id(state.repo, 1).activated == true
 
     state = Commands.deactivate_inventory_item(state, 1)
 
