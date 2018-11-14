@@ -6,7 +6,7 @@
 InventoryItem::
   * CreateInventoryItem -> InventoryItemCreated
   * DeactivateInventoryItem -> InventoryItemDeactivated
-  * RemoveItemsFromInventory(count) -> ItemRemovedFromInventory
+  * CheckOutItemsFromInventory(count) -> ItemCheckedOutFromInventory
   * CheckInItemsToInventory(count) -> ItemsCheckedInToInventory
   * RenameInventoryItem -> InventoryItemRenamed
 
@@ -18,7 +18,7 @@ InventoryItemListView::
 
 InventoryItemDetailView::
   * InventoryItemDetailDto
-  * handles: created, renamed, removed, checkedin, removed
+  * handles: created, renamed, CheckedOut, checkedin, removed
 
 == Sequence
 
