@@ -1,5 +1,7 @@
 defmodule Repository do
 
+  @type t :: map()
+
   def get_by_id(rep, id) do
     Map.get(rep, id, nil)
   end
