@@ -4,7 +4,8 @@ defmodule CommandsTest do
   doctest Commands
 
   test "create should save to repository" do
-    state = Commands.new()
+    {:ok, repo} = Repository.Memory.start_link([])
+    state = Commands.new(repo)
     state = Commands.create_inventory_item(state, 1, "item name")
 
     assert Repository.get_by_id(state.repo, 1) != nil
@@ -15,7 +16,8 @@ defmodule CommandsTest do
   end
 
   test "checkin shoud increment count" do
-    state = Commands.new()
+    {:ok, repo} = Repository.Memory.start_link([])
+    state = Commands.new(repo)
     state = Commands.create_inventory_item(state, 1, "item name")
 
     state = Commands.checkin_items_into_inventory(state, 1, 5)
@@ -24,7 +26,8 @@ defmodule CommandsTest do
   end
 
   test "checkout shoud decrement count" do
-    state = Commands.new()
+    {:ok, repo} = Repository.Memory.start_link([])
+    state = Commands.new(repo)
     state = Commands.create_inventory_item(state, 1, "item name")
     state = Commands.checkin_items_into_inventory(state, 1, 5)
 
@@ -34,7 +37,8 @@ defmodule CommandsTest do
   end
 
   test "rename should change name of item" do
-    state = Commands.new()
+    {:ok, repo} = Repository.Memory.start_link([])
+    state = Commands.new(repo)
     state = Commands.create_inventory_item(state, 1, "item name")
 
     state = Commands.rename_inventory_item(state, 1, "new name")
@@ -43,7 +47,8 @@ defmodule CommandsTest do
   end
 
   test "deactivate should mark item as inactive" do
-    state = Commands.new()
+    {:ok, repo} = Repository.Memory.start_link([])
+    state = Commands.new(repo)
     state = Commands.create_inventory_item(state, 1, "item name")
 
     state = Commands.deactivate_inventory_item(state, 1)

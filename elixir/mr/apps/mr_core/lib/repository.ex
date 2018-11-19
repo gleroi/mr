@@ -1,13 +1,11 @@
 defmodule Repository do
 
-  @type t :: map()
-
   def get_by_id(rep, id) do
-    Map.get(rep, id, nil)
+    GenServer.call(rep, {:get_by_id, id})
   end
 
   def save(rep, id, item) do
-    Map.put(rep, id, item)
+    GenServer.call(rep, {:save, id, item})
   end
 
 end
