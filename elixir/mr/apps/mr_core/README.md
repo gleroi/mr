@@ -1,5 +1,11 @@
 # MrCore
 
+## Usefull elixir/opt links
+
+GenServer cheatsheet::
+https://raw.githubusercontent.com/benjamintanweihao/elixir-cheatsheets/master/GenServer_CheatSheet.pdf
+
+
 **TODO: Add description**
 
 ## Installation
