@@ -1,9 +1,9 @@
 defmodule Commands do
 
   # Commands handlers
-  @type t :: %Commands{}
 
   defstruct [:repo]
+  @type t :: %Commands{}
 
   @spec new(Repository.t) :: Commands.t()
   def new(repo) do
